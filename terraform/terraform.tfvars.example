@@ -1,0 +1,19 @@
+# AWS Configuration
+aws_region   = "us-east-1"
+project_name = "webscrap"
+
+# UOL Credentials (will be stored in Secrets Manager)
+uol_email    = "your-email@example.com"
+uol_password = "your-password"
+
+# Schedule Configuration
+enable_schedule       = false
+schedule_expression   = "rate(1 hour)"
+
+# Tags
+tags = {
+  Project     = "webscrap"
+  Environment = "dev"
+  ManagedBy   = "Terraform"
+  Team        = "DevOps"
+}
