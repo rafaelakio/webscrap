@@ -28,11 +28,11 @@ A Python web scraper that automates login to UOL accounts. This tool can be run 
 2. **Create a virtual environment (recommended)**
    ```bash
    python -m venv venv
-   
+
    # Activate virtual environment
    # On Windows:
    venv\Scripts\activate
-   
+
    # On macOS/Linux:
    source venv/bin/activate
    ```
@@ -56,7 +56,7 @@ A Python web scraper that automates login to UOL accounts. This tool can be run 
    # Login credentials
    email=rafaelakio@bol.com.br
    password=your_actual_password
-   
+
    # Optional settings
    timeout=30
    max_retries=3
