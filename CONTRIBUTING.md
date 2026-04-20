@@ -161,14 +161,14 @@ user_email = "test@example.com"
 def uol_login_scraper(email, password):
     """
     Realiza login no UOL/BOL.
-    
+
     Args:
         email (str): Email do usuário
         password (str): Senha do usuário
-        
+
     Returns:
         bool: True se login bem-sucedido, False caso contrário
-        
+
     Raises:
         requests.RequestException: Erro de rede
     """
@@ -234,6 +234,42 @@ response = requests.get(url, timeout=30)
 
 ## 🔄 Processo de Pull Request
 
+### Workflow de Branches
+
+Use sempre branches com prefixo descritivo, criadas a partir de `main`:
+
+- `feature/<descricao-curta>` — novas funcionalidades
+- `fix/<descricao-curta>` — correções de bugs
+- `chore/<descricao-curta>` — tarefas de manutenção, tooling, CI
+- `docs/<descricao-curta>` — mudanças de documentação
+- `refactor/<descricao-curta>` — refatorações sem mudança de comportamento
+
+Fluxo: feature branch → Pull Request → code review → merge em `main` (nunca commite direto em `main`).
+
+### Processo de Code Review
+
+- Todo PR **requer pelo menos 1 approval** antes do merge.
+- Reviewers devem verificar: clareza do código, cobertura de testes, impacto em segurança e aderência ao style guide.
+- Autor deve responder comentários e aplicar sugestões (ou justificar) antes de solicitar re-review.
+
+### Como Criar PRs
+
+1. Use um título descritivo no formato Conventional Commits (`feat: ...`, `fix: ...`, `chore: ...`).
+2. Preencha o template (`.github/pull_request_template.md`) por completo.
+3. Vincule a(s) issue(s) relacionadas usando `Closes #<n>` ou `Fixes #<n>`.
+4. Marque como Draft enquanto ainda houver trabalho em progresso.
+5. Garanta que o CI está verde antes de pedir review.
+
+### Branch Protection (para administradores)
+
+Configure `main` em **GitHub Settings → Branches → Branch protection rules → Add rule**:
+
+- [x] **Require a pull request before merging** — 1 approving review obrigatório.
+- [x] **Require status checks to pass before merging** — marque os checks do workflow `CI` (`lint-and-test`, `pre-commit`).
+- [x] **Require branches to be up to date before merging**.
+- [x] **Include administrators**.
+- [x] (Opcional, recomendado) **Require conversation resolution before merging**.
+
 ### Checklist
 
 Antes de submeter um PR, verifique:
@@ -298,7 +334,7 @@ Fixes #67
    ```python
    # ✓ Correto: Mascare senhas em logs
    logger.info(f"Login com email: {email}")
-   
+
    # ✗ Evite: Logar senhas
    logger.info(f"Login: {email}:{password}")
    ```
@@ -315,7 +351,7 @@ Fixes #67
    ```python
    # ✓ Correto
    url = "https://conta.uol.com.br"
-   
+
    # ✗ Evite
    url = "http://conta.uol.com.br"
    ```

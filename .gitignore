@@ -43,3 +43,4 @@ Thumbs.db
 
 # Test files
 login_page.html
+.venv/
