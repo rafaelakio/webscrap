@@ -2,23 +2,37 @@
 
 from __future__ import annotations
 
-import textwrap
 from pathlib import Path
 
 import pytest
+
+SAMPLE_CONFIG = """[DEFAULT]
+email=teste@bol.com.br
+password=senha_super_secreta
+timeout=15
+max_retries=2
+debug_mode=true
+"""
+
+
+LOGIN_PAGE_HTML = """
+<html>
+  <body>
+    <form action="/login-submit" method="post">
+      <input type="hidden" name="csrf_token" value="abc123" />
+      <input type="email" name="email" />
+      <input type="password" name="password" />
+      <input type="submit" value="Entrar" />
+    </form>
+  </body>
+</html>
+"""
 
 
 @pytest.fixture
 def sample_config_content() -> str:
     """Conteúdo de um config.properties válido para testes."""
-    return textwrap.dedent("""
-        [DEFAULT]
-        email=teste@bol.com.br
-        password=senha_super_secreta
-        timeout=15
-        max_retries=2
-        debug_mode=true
-        """).strip()
+    return SAMPLE_CONFIG
 
 
 @pytest.fixture
@@ -32,15 +46,4 @@ def config_file(tmp_path: Path, sample_config_content: str) -> Path:
 @pytest.fixture
 def login_page_html() -> str:
     """HTML mínimo com um formulário de login no formato esperado."""
-    return """
-    <html>
-      <body>
-        <form action="/login-submit" method="post">
-          <input type="hidden" name="csrf_token" value="abc123" />
-          <input type="email" name="email" />
-          <input type="password" name="password" />
-          <input type="submit" value="Entrar" />
-        </form>
-      </body>
-    </html>
-    """
+    return LOGIN_PAGE_HTML
