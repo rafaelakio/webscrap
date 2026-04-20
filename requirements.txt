@@ -1,5 +1,5 @@
 requests==2.31.0
-beautifulsoup4==4.12.2
+beautifulsoup4==4.14.3
 lxml==4.9.3
 
 # Desenvolvimento / testes (opcional — use `pip install -e ".[dev]"` para uma versão mais completa)
